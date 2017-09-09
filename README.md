@@ -17,44 +17,44 @@ The goal of the project is to deeply understand the details of DHCP (Dynamic Hos
 
 ### Environmental Requirements
 
-- Operating System
+#### Operating System
 Ubuntu 14.04.5 Server
 
-- Programming Language
+#### Programming Language
 Linux C language
 
-- Configuration Requirements
-For Client: Netcard “eth1” is for inter network, which does not has IP address.
-For Server: Netcard “eth1” is for inter network, which IP address is “192.168.0.1”. File “dhcp.config” saves available IP address in pool. “dhcp.lease” saves the IP lease data.
+#### Configuration Requirements
+- For Client: Netcard “eth1” is for inter network, which does not has IP address.
+- For Server: Netcard “eth1” is for inter network, which IP address is “192.168.0.1”. File “dhcp.config” saves available IP address in pool. “dhcp.lease” saves the IP lease data.
 
 ### Functional Requirements
 
-- Support DHCP messages
+- Support DHCP messages: 
 DHCP operations fall into four phases: sever discovery, IP lease offer, IP lease request and IP lease acknowledgement. All these stages are completed through DHCP messages exchange. Supporting DHCP messages is the most basic requirements for this model.
 
-- Support DHCP options
+- Support DHCP options: 
 DHCP options are variable length octet strings. DHCP options contains special parameters closely related to  the process. A DHCP server can provide optional configuration parameters to the client, and a DHCP client can select, manipulate and overwrite these parameters.
 
-- Four messages during address acquisition can be delivered on broadcast packets.
+- Four messages during address acquisition can be delivered on broadcast packets: 
 DHCPDICOVER, DHCPOFFER, DHCPREQUEST and DHCPACK are used during address acquisition. Actually, DHCPOFFER and DHCPACK are delivered on unicast packets in usual case, but for simplicity, we assume all these packets are delivered through broadcast.
 
-- Support DHCP procedures
+- Support DHCP procedures: 
 All the operations in the program should follow the actual procedures in DHCP.
 
-- DHCP Server functions
+- DHCP Server functions: 
 Listen to UDP port 67 . For first request, select free IP address from IP address pool and reply to client. For inform request, reply ACK with option value. IP range and value of option s are stored in IP address pool (dhcp.config file ) , Assigned IP, client mac address and time stamp are stored in IP lease pool (dhcp.lease file). Print log message DHCP client functionss.
 
-- DHCP Client functions
+- DHCP Client functions: 
 Listen to UDP port 68 . User can specify command line arguments to con trol actions of client program. Print log messages.
 
 ---
 
 ## Module
 
-Client file : dhcpclient.c
-Server file : dhcpserver.c
-Common file: dhcp.h
-Configuration file: dhcp.lease, dhcp.config
+- Client file : dhcpclient.c
+- Server file : dhcpserver.c
+- Common file: dhcp.h
+- Configuration file: dhcp.lease, dhcp.config
 
 
 
